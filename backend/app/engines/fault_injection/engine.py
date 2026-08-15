@@ -26,3 +26,17 @@ class FaultInjectionEngine:
 
     def get_faults(self):
         return self.faults
+
+    def is_service_failed(self, service, current_time):
+        for fault in self.faults:
+            if (
+                fault["service"] == service
+                and fault["fault_type"] == "failure"
+            ):
+                start_time = 0
+                end_time = start_time + fault["duration"]
+
+                if start_time <= current_time < end_time:
+                    return True
+
+        return False
