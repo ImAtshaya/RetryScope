@@ -1,0 +1,716 @@
+/* =========================================================
+   SIMULATION PAGE
+   ========================================================= */
+
+.simulation-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+/* Header */
+.sim-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #1a2431;
+}
+
+.sim-header__title {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.sim-header__subtitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #94a3b8;
+}
+
+.sim-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Top 3-Column Layout */
+.sim-layout {
+  display: grid;
+  grid-template-columns: 310px 1fr 310px;
+  gap: 20px;
+}
+
+/* Panel Generic */
+.sim-panel {
+  display: flex;
+  flex-direction: column;
+  background: #0d1219;
+  border: 1px solid #1a2431;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.sim-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #1a2431;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.sim-panel__header-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.sim-panel__content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+/* Form Groups & Inputs */
+.sim-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sim-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sim-label__value {
+  color: #93c5fd;
+  font-weight: 700;
+}
+
+.sim-input,
+.sim-select {
+  width: 100%;
+  padding: 9px 12px;
+  background: #141b24;
+  border: 1px solid #2a3544;
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+}
+
+.sim-input:focus,
+.sim-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+.sim-input:disabled,
+.sim-select:disabled {
+  background: #090e15;
+  color: #475569;
+  cursor: not-allowed;
+}
+
+.sim-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 4px;
+  outline: none;
+  margin: 8px 0 4px;
+}
+
+.sim-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+  transition: transform 0.1s ease;
+}
+
+.sim-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.sim-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.sim-range:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sim-help-text {
+  font-size: 0.6875rem;
+  color: #64748b;
+}
+
+/* Topology Preview Canvas */
+.sim-preview-canvas {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #111822 0%, #0d1219 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  position: relative;
+}
+
+.sim-topology-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 10px 0;
+}
+
+.sim-topology-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sim-node-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: rgba(15, 20, 28, 0.95);
+  border: 1px solid #2a3544;
+  border-radius: 10px;
+  min-width: 200px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.sim-node-card:hover {
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.sim-node-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sim-node-icon--gateway {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.sim-node-icon--inventory {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.sim-node-icon--database {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.sim-node-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sim-node-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.sim-node-type {
+  font-size: 0.6875rem;
+  color: #64748b;
+}
+
+.sim-node-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.sim-node-status::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+.sim-node-status--warning {
+  color: #f59e0b;
+}
+.sim-node-status--warning::before {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+.sim-node-status--failed {
+  color: #ef4444;
+}
+.sim-node-status--failed::before {
+  background: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+.sim-connector-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 28px;
+  justify-content: center;
+}
+
+.sim-connector-line__bar {
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(180deg, #2a3544, #3b82f6);
+}
+
+.sim-connector-line__arrow {
+  color: #3b82f6;
+  font-size: 0.6875rem;
+  line-height: 1;
+  margin-top: -3px;
+}
+
+/* Status Banner / Running State */
+.sim-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 10px;
+  background: #0d1219;
+  border: 1px solid #1a2431;
+}
+
+.sim-status-banner--running {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.08) 0%, #0d1219 100%);
+}
+
+.sim-status-banner--completed {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.08) 0%, #0d1219 100%);
+}
+
+.sim-status-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sim-status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+.sim-status-indicator--running {
+  background: #3b82f6;
+  box-shadow: 0 0 10px #3b82f6;
+  animation: sim-pulse 1.5s infinite;
+}
+
+.sim-status-indicator--completed {
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+@keyframes sim-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.sim-status-text strong {
+  display: block;
+  font-size: 0.875rem;
+  color: #f8fafc;
+}
+
+.sim-status-text small {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Metrics Grid (Status metrics) */
+.sim-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.sim-metric-card {
+  padding: 18px 20px;
+  border: 1px solid #1a2431;
+  border-radius: 12px;
+  background: #0d1219;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.sim-metric-card:hover {
+  border-color: #2a3544;
+  transform: translateY(-1px);
+}
+
+.sim-metric-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sim-metric-card__label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sim-metric-card__value {
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  line-height: 1.1;
+}
+
+.sim-metric-card__value--success {
+  color: #4ade80;
+}
+
+.sim-metric-card__value--danger {
+  color: #f87171;
+}
+
+.sim-metric-card__value--warning {
+  color: #fbbf24;
+}
+
+.sim-metric-card__value--accent {
+  color: #60a5fa;
+}
+
+.sim-metric-card__subtext {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Results & Details Grid (Service status + Activity log) */
+.sim-results-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+}
+
+/* Table */
+.sim-table-container {
+  overflow-x: auto;
+}
+
+.sim-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sim-table th {
+  padding: 12px 14px;
+  border-bottom: 1px solid #1a2431;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.sim-table td {
+  padding: 14px;
+  border-bottom: 1px solid #141b24;
+  font-size: 0.8125rem;
+  color: #cbd5e1;
+}
+
+.sim-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sim-table__service {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.sim-table__service-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.sim-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.sim-status-badge--healthy {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.sim-status-badge--warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.sim-status-badge--failed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* Activity Log */
+.sim-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sim-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #141b24;
+  border: 1px solid #1e293b;
+  font-size: 0.8125rem;
+}
+
+.sim-activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.sim-activity-dot--info {
+  background: #60a5fa;
+  box-shadow: 0 0 6px rgba(96, 165, 250, 0.5);
+}
+
+.sim-activity-dot--warning {
+  background: #fbbf24;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+}
+
+.sim-activity-dot--success {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+}
+
+.sim-activity-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sim-activity-item__text {
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+.sim-activity-item__time {
+  font-size: 0.6875rem;
+  color: #64748b;
+  font-family: monospace;
+}
+
+/* Empty States */
+.sim-empty-card {
+  padding: 48px 24px;
+  border: 1px dashed #1e293b;
+  border-radius: 12px;
+  background: rgba(15, 20, 25, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.sim-empty-card__icon {
+  font-size: 2rem;
+  color: #475569;
+}
+
+.sim-empty-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.sim-empty-card__text {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin: 0;
+  max-width: 360px;
+}
+
+/* Validation Alert */
+.sim-alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .sim-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .sim-layout > .sim-preview-panel {
+    grid-column: span 2;
+    order: -1;
+  }
+
+  .sim-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sim-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sim-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-layout > .sim-preview-panel {
+    grid-column: span 1;
+  }
+
+  .sim-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sim-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sim-header__actions {
+    width: 100%;
+  }
+
+  .sim-header__actions .btn {
+    flex: 1;
+  }
+}

@@ -1,0 +1,61 @@
+.page {
+  min-height: 200px;
+}
+
+.page__placeholder {
+  margin: 0;
+  padding: 48px 24px;
+  border: 1px dashed #1e293b;
+  border-radius: 12px;
+  background: rgba(15, 20, 25, 0.6);
+  color: #64748b;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Shared button utilities (used by shell + dashboard) */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn--secondary {
+  border: 1px solid #2a3544;
+  background: #141b24;
+  color: #cbd5e1;
+}
+
+.btn--secondary:hover {
+  background: #1a2330;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.btn--primary {
+  border: 1px solid #2563eb;
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: #2563eb;
+  border-color: #1d4ed8;
+}
+
+.btn--large {
+  padding: 12px 20px;
+  font-size: 0.875rem;
+}

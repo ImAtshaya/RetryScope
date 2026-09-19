@@ -49,3 +49,43 @@ def test_unknown_dependency():
 
     with pytest.raises(ValueError):
         topology.add_dependency("gateway", "payment")
+        
+def test_get_dependencies_for_service():
+
+    topology = TopologyEngine()
+
+    topology.add_service("gateway")
+    topology.add_service("order")
+    topology.add_service("inventory")
+
+    topology.add_dependency(
+        "gateway",
+        "order"
+    )
+
+    topology.add_dependency(
+        "order",
+        "inventory"
+    )
+
+    assert topology.get_dependencies_for(
+        "gateway"
+    ) == ["order"]
+
+    assert topology.get_dependencies_for(
+        "order"
+    ) == ["inventory"]
+
+    assert topology.get_dependencies_for(
+        "inventory"
+    ) == []
+    
+def test_get_dependencies_for_unknown_service():
+
+    topology = TopologyEngine()
+
+    with pytest.raises(ValueError):
+
+        topology.get_dependencies_for(
+            "payment"
+        )    
